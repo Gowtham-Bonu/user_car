@@ -1,0 +1,24 @@
+<div class="container" >
+  <h1>Login</h1>
+  <%= form_with url: logins_path do |form| %>
+    <div class="card container" >
+      <div class="card-body" >
+          <div class="mb-3" >
+            <%= form.label :name, {class: "form-label"}   %><br>
+            <%= form.text_field :name, {class: "form-control", placeholder: "name"}  %>
+          </div>
+            <div class="mb-3" >
+              <%= form.label :password, {class: "form-label"}   %><br>
+              <%= form.password_field :password, {class: "form-control", placeholder: "password"}   %><br>
+            </div>
+            <div>
+              <%= form.submit "login" %>
+            </div>
+        </div>
+    </div>
+  <% end %>
+  <div class="column" >
+    <%= link_to "logout", logins_destroy_path %>
+    <%= link_to "don't have an account? Signup!", new_user_path %>
+  </div>
+</div>

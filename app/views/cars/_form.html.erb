@@ -1,0 +1,35 @@
+<%= form_with model: @car do |form| %>
+  <div class="card container" >
+    <div class="card-body" >
+      <div class="mb-3" >
+        <%= form.label :name, {class: "form-label"}   %><br>
+        <%= form.text_field :name, {class: "form-control", placeholder: "name"}  %>
+        <% @car.errors.full_messages_for(:name).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+        </div>
+        <div class="mb-3" >
+          <%= form.label :price, {class: "form-label"}   %><br>
+          <%= form.number_field :price, {class: "form-control", placeholder: "price"}   %><br>
+          <% @car.errors.full_messages_for(:price).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+        </div>
+        <div class="mb-3" >
+          <%= form.label :brand, {class: "form-label"}   %><br>
+          <%= form.text_field :brand, {class: "form-control", placeholder: "brand"}   %><br>
+        </div>
+        <div class="mb-3" >
+          <%= form.label :color, {class: "form-label"}   %><br>
+          <%= form.text_field :color, {class: "form-control", placeholder: "color"}   %><br>
+        </div>
+        <div class="mb-3" >
+          <%= form.label :remember_brand, {class: "form-label"}   %><br>
+          <%= form.check_box :remember_brand  %><br>
+        </div>
+        <div>
+          <%= form.submit %>
+        </div>
+      </div>
+  </div>
+<% end %>

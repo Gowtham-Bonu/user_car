@@ -1,0 +1,27 @@
+<div class="container" >
+  <h1>Signup</h1>
+  <%= form_with model: @user, url: users_path do |form| %>
+    <div class="card container" >
+      <div class="card-body" >
+          <div class="mb-3" >
+            <%= form.label :name, {class: "form-label"}   %><br>
+            <%= form.text_field :name, {class: "form-control", placeholder: "name"}  %>
+            <% @user.errors.full_messages_for(:name).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <div class="mb-3" >
+            <%= form.label :password, {class: "form-label"}   %><br>
+            <%= form.password_field :password, {class: "form-control", placeholder: "password"}   %><br>
+            <% @user.errors.full_messages_for(:password).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <div>
+            <%= form.submit "signup" %>
+          </div>
+        </div>
+    </div>
+    <%= link_to "Already a user? login ..", new_login_path %>
+  <% end %>
+</div>
