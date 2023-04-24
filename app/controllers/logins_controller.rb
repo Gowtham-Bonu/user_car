@@ -1,13 +1,12 @@
 class LoginsController < ApplicationController
   skip_before_action :require_login?, only: [:new, :create]
-  def new
-  end
+  def new; end
 
   def create
     @user = User.find_by(name: params[:name])
     if @user && @user.authenticate(params[:password])
       session[:current_user_id] = @user.id
-      redirect_to cars_path
+      redirect_to cars_path, notice: "you have successfully logged in!"
     end
   end
 

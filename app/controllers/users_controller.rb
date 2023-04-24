@@ -7,10 +7,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-        session[:current_user_id] = @user.id
-        redirect_to cars_path
+      session[:current_user_id] = @user.id
+      redirect_to cars_path, notice: "welcome!"
     else
-        render :new, status: :unprocessable_entity
+      flash.now[:error] = "action invalid!"
+      render :new, status: :unprocessable_entity
     end
   end
 

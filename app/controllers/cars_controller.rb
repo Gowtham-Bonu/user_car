@@ -16,17 +16,18 @@ class CarsController < ApplicationController
       cookies[:car_brand] = @car.brand if @car.remember_brand
       redirect_to root_path, notice: "you have successfully created a car!"
     else
+      flash.now[:error] = "car is not created"
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @car.update(car_params)
       redirect_to root_path, notice: "you have successfully updated a car!"
     else
+      flash.now[:error] = "car is not updated"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -65,4 +66,3 @@ class CarsController < ApplicationController
     params.require(:car).permit(:name, :price, :brand, :color, :remember_brand)
   end
 end
-    

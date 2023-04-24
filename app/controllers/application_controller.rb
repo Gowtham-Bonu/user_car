@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :require_login?
+  rescue_from ActiveRecord::RecordNotFound, with: :send_message
 
   def logged_in?
     session[:current_user_id]
@@ -12,9 +13,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def current_user
     @_current_user ||= session[:current_user_id] && User.find_by(id: session[:current_user_id])
+  end
+
+  private
+
+  def send_message
+    render plain: "Record is not found"
   end
 end
   
