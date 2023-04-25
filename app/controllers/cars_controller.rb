@@ -38,11 +38,7 @@ class CarsController < ApplicationController
   end
 
   def index  
-    @cars = if params[:name].present?          
-              Car.where('name LIKE ?', "%#{params[:name]}%")
-            else            
-              Car.all          
-            end
+    @cars = Car.all
   end
 
   def download_pdf
@@ -50,6 +46,11 @@ class CarsController < ApplicationController
     send_data generate_pdf(car),
     filename: "#{car.name}.pdf",
     type: "application/pdf"
+  end
+
+  def search
+    @cars = Car.where('name LIKE ?', "%#{params[:name].strip}%")   
+    render :index
   end
 
   private

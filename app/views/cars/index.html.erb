@@ -6,7 +6,7 @@
   <button class="btn btn-outline-primary"><%= link_to "download pdf", cars_download_pdf_path %></button>
 </div>
 <div class="search" >
-  <%= form_with url: cars_path, method: :get do |form| %>
+  <%= form_with url: search_cars_path, method: :get do |form| %>
     <%= form.label :name, "Search by name:", {class: "form-label"}%>
     <%= form.text_field :name, { placeholder: "search by name"} %>
     <%= form.submit "Search", {class: " bg-primary s_button btn btn-primary"} %>

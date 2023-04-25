@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get '/destroy' => "logins#destroy", as: 'logins_destroy'
   get '/:reset' => "cars#index", as: 'reset'
   resources :logins
-  resources :cars
+  resources :cars do
+    collection do
+      get 'search'
+    end
+  end
   resources :users
 end
