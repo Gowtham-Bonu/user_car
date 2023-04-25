@@ -1,0 +1,42 @@
+<div class="container cars" >
+  <div class="d-flex justify-content-between" >
+  <button class="btn btn-outline-primary" ><%= link_to "admin's deets..", admin_path %></button>
+  <button class="btn btn-outline-primary"><%= link_to "logout", logins_destroy_path %></button>
+  <button class="btn btn-outline-primary"><%= link_to "create a new car", new_car_path %></button>
+  <button class="btn btn-outline-primary"><%= link_to "download pdf", cars_download_pdf_path %></button>
+</div>
+<div class="search" >
+  <%= form_with url: search_cars_path, method: :get do |form| %>
+    <%= form.label :name, "Search by name:", {class: "form-label"}%>
+    <%= form.text_field :name, { placeholder: "search by name"} %>
+    <%= form.submit "Search", {class: " bg-primary s_button btn btn-primary"} %>
+    <button class="btn btn-outline-primary"><%= link_to "reset", reset_path(1) %></button>
+  <% end %>
+</div>
+<p><%= @msg %></p>
+<table class="table table-striped-columns">
+  <thead>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Brand</th>
+    <th>Color</th>
+    <th colspan = "2" >Action</th>
+  </thead>
+  <tbody>
+    <% if @cars.present? %>
+      <% @cars.each do |car| %>
+        <tr>
+          <td><%= car.name %></td>
+          <td><%= car.price %></td>
+          <td><%= car.brand %></td>
+          <td><%= car.color %></td>
+          <td><%= link_to "edit", edit_car_path(car) %></td>
+          <td><button class="delete  btn btn-light"><%= link_to "Destroy", car_path(car), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <h2>no car found</h2>
+    <% end %>
+  </tbody>
+</table>
+</div>
